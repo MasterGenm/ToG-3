@@ -1,5 +1,15 @@
 - 首页 [首页](/)
 - 快速入门 [快速入门](quickstart.md)
-- 配置指南 [配置指南](configuration.md)
-- API参考 [API参考](api_reference.md)
+- 核心模块
+  - 标准RAG [标准RAG](modules/naive_rag.md)
+  - 图RAG [图RAG](modules/graph_rag.md)
+  - 多模态RAG [多模态RAG](modules/mm_rag.md)
+- API参考
+  - LLM接口 [LLM接口](api/llm.md)
+  - 存储接口 [存储接口](api/storage.md)
+  - 检索接口 [检索接口](api/retriever.md)
+- 示例
+  - 标准RAG示例 [标准RAG示例](examples/naive_rag.md)
+  - 图RAG示例 [图RAG示例](examples/graph_rag.md)
+  - 多模态RAG示例 [多模态RAG示例](examples/mm_rag.md)
 - 部署指南 [部署指南](deployment.md)
