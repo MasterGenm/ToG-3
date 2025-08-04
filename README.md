@@ -28,7 +28,7 @@ A factory for building advanced RAG (Retrieval-Augmented Generation) pipelines, 
 - GraphRAG architectures 
 - Multi-modal RAG systems
 
-## Features
+## 🌟Features
 
 <div>
   <img src="./assets/knowledge_base_screenshot.png" alt="Example Knowledge Base Screenshot of RAG-Factory" width="800">
