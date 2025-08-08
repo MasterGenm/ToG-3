@@ -15,12 +15,12 @@ pip install -r requirements.txt
 ```
 # model download
 from huggingface_hub import snapshot_download
-snapshot_download(repo_id="rednote-hilab/dots.ocr", local_dir="weights/DotsOCR", local_dir_use_symlinks=False, resume_download=True)
+snapshot_download(repo_id="rednote-hilab/dots.ocr", local_dir="Parser_Dotsocr/weights/DotsOCR", local_dir_use_symlinks=False, resume_download=True)
 
 or
 
 from modelscope import snapshot_download
-snapshot_download(repo_id="rednote-hilab/dots.ocr", local_dir="weights/DotsOCR")
+snapshot_download(repo_id="rednote-hilab/dots.ocr", local_dir="Parser_Dotsocr/weights/DotsOCR")
 ```
 
 ## 2. vLLM inference
