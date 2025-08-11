@@ -9,6 +9,8 @@ from dashscope import MultiModalConversation
 import argparse
 from pathlib import Path
 
+os.environ["DASHSCOPE_API_KEY"] = "your api key"
+
 def fig_understand(fig_path):
     # prompt = '请给出图像中具体内容信息，并用json格式输出,仅输出json格式数据，其中，图片类型请从["chart","knowladge_map","other"]中选择'
     prompt = '''
@@ -91,7 +93,7 @@ def fig_understand(fig_path):
 ]
 
     response = MultiModalConversation.call(
-        api_key="sk-e696b88412204f6f8b747afe92c6e45a",
+        api_key=os.environ.get('DASHSCOPE_API_KEY'),
         model="qwen-vl-plus",  
         messages=messages,
     )
