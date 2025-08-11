@@ -113,7 +113,7 @@ class BM25Retriever(BaseRetriever):
         # 设置属性
         self.vectorizer = kwargs.get('vectorizer')
         self.docs = kwargs.get('docs', [])
-        self.k = kwargs.get('k', 4)
+        self.k = kwargs.get('k', 5)
         self.preprocess_func = kwargs.get('preprocess_func', default_preprocessing_func)
         self.bm25_params = kwargs.get('bm25_params', {})
         
@@ -157,7 +157,6 @@ class BM25Retriever(BaseRetriever):
         ids: Optional[Iterable[str]] = None,
         bm25_params: Optional[Dict[str, Any]] = None,
         preprocess_func: Callable[[str], List[str]] = default_preprocessing_func,
-        k: int = 4,
         **kwargs: Any,
     ) -> "BM25Retriever":
         """从文本列表创建 BM25Retriever
@@ -168,7 +167,6 @@ class BM25Retriever(BaseRetriever):
             ids: ID列表，可选
             bm25_params: BM25 算法参数，可选
             preprocess_func: 预处理函数
-            k: 返回文档数量
             **kwargs: 其他参数
             
         Returns:
@@ -231,7 +229,6 @@ class BM25Retriever(BaseRetriever):
         return cls(
             vectorizer=vectorizer,
             docs=docs,
-            k=k,
             preprocess_func=preprocess_func,
             bm25_params=bm25_params,
             **kwargs
@@ -243,7 +240,6 @@ class BM25Retriever(BaseRetriever):
         documents: Iterable[Document],
         bm25_params: Optional[Dict[str, Any]] = None,
         preprocess_func: Callable[[str], List[str]] = default_preprocessing_func,
-        k: int = 4,
         **kwargs: Any,
     ) -> "BM25Retriever":
         """从文档列表创建 BM25Retriever
@@ -252,7 +248,6 @@ class BM25Retriever(BaseRetriever):
             documents: 文档列表
             bm25_params: BM25 算法参数，可选
             preprocess_func: 预处理函数
-            k: 返回文档数量
             **kwargs: 其他参数
             
         Returns:
@@ -272,7 +267,6 @@ class BM25Retriever(BaseRetriever):
             ids=ids,
             bm25_params=bm25_params,
             preprocess_func=preprocess_func,
-            k=k,
             **kwargs,
         )
     

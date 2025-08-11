@@ -1,8 +1,4 @@
 from typing import List, Dict, Any, Optional, Union
-from abc import ABC, abstractmethod
-import numpy as np
-from dataclasses import dataclass
-from collections import defaultdict
 
 from ..RetrieverBase import Document
 from ..RetrieverBase import BaseRetriever
@@ -10,17 +6,29 @@ from ..utils.Fusion import FusionMethod, RRFusion, RetrievalResult
 
 
 class MultiPathRetriever(BaseRetriever):
-    """多路检索器"""
+    """
+    多路检索器
+    
+    该类实现了多路检索功能，可以同时使用多个检索器进行文档检索，
+    并通过指定的融合方法将多个检索器的结果进行合并和排序。
+    
+    Attributes:
+        retrievers (List[BaseRetriever]): 检索器列表，每个检索器需要实现retrieve方法
+        fusion_method (FusionMethod): 融合方法，用于合并多个检索器的结果
+        top_k_per_retriever (int): 每个检索器返回的结果数量
+    """
     
     def __init__(self, 
                  retrievers: List[BaseRetriever],
                  fusion_method: Optional[FusionMethod] = None,
                  top_k_per_retriever: int = 50):
         """
+        初始化多路检索器
+        
         Args:
-            retrievers: 检索器列表，每个检索器需要实现retrieve方法
-            fusion_method: 融合方法，默认为RRF
-            top_k_per_retriever: 每个检索器返回的结果数量
+            retrievers (List[BaseRetriever]): 检索器列表，每个检索器需要实现retrieve方法
+            fusion_method (Optional[FusionMethod]): 融合方法，默认为RRF (Reciprocal Rank Fusion)
+            top_k_per_retriever (int): 每个检索器返回的结果数量，默认为50
         """
         self.retrievers = retrievers
         self.fusion_method = fusion_method or RRFusion()
@@ -30,12 +38,20 @@ class MultiPathRetriever(BaseRetriever):
         """
         获取与查询相关的文档
         
+        该方法会调用所有配置的检索器，获取每个检索器的检索结果，
+        然后使用指定的融合方法将所有结果进行合并和排序。
+        
         Args:
-            query: 查询字符串
-            **kwargs: 其他参数，包括top_k等
+            query (str): 查询字符串
+            **kwargs (Any): 其他参数，包括top_k等
             
         Returns:
-            相关文档列表
+            List[Document]: 融合后的相关文档列表，按相关性排序
+            
+        Note:
+            - 每个检索器的结果会被转换为RetrievalResult格式
+            - 支持多种输入格式：Document对象、字典格式、字符串等
+            - 融合后的结果会将score和rank信息保存在Document的metadata中
         """
         top_k = kwargs.get('top_k', 10)
         
@@ -115,57 +131,34 @@ class MultiPathRetriever(BaseRetriever):
 
     
     def add_retriever(self, retriever: BaseRetriever):
-        """添加新的检索器"""
+        """
+        添加新的检索器到多路检索器中
+        
+        Args:
+            retriever (BaseRetriever): 要添加的检索器实例
+        """
         self.retrievers.append(retriever)
     
     def remove_retriever(self, name: str):
-        """移除指定名称的检索器"""
+        """
+        移除指定名称的检索器
+        
+        Args:
+            name (str): 要移除的检索器的类名
+            
+        Note:
+            该方法通过比较检索器的类名来识别要移除的检索器
+        """
         for i, retriever in enumerate(self.retrievers):
             if hasattr(retriever, '__class__') and retriever.__class__.__name__ == name:
                 self.retrievers.pop(i)
                 break
     
     def set_fusion_method(self, fusion_method: FusionMethod):
-        """设置融合方法"""
+        """
+        设置融合方法
+        
+        Args:
+            fusion_method (FusionMethod): 新的融合方法实例
+        """
         self.fusion_method = fusion_method
-
-
-# 示例用法
-if __name__ == "__main__":
-    # 假设我们有两个检索器
-    class MockBM25Retriever(BaseRetriever):
-        def _get_relevant_documents(self, query: str, **kwargs: Any) -> List[Document]:
-            # 模拟BM25检索结果
-            return [
-                Document(content="BM25 result 1", metadata={"source": "bm25"}),
-                Document(content="BM25 result 2", metadata={"source": "bm25"}),
-                Document(content="Vector result 1", metadata={"source": "bm25"}),
-            ]
-    
-    class MockVectorRetriever(BaseRetriever):
-        def _get_relevant_documents(self, query: str, **kwargs: Any) -> List[Document]:
-            # 模拟向量检索结果
-            return [
-                Document(content="Vector result 1", metadata={"source": "vector"}),
-                Document(content="Vector result 2", metadata={"source": "vector"}),
-            ]
-    
-    # 创建检索器实例
-    bm25_retriever = MockBM25Retriever()
-    vector_retriever = MockVectorRetriever()
-    
-    # 创建多路检索器
-    multi_retriever = MultiPathRetriever(
-        retrievers=[bm25_retriever, vector_retriever],
-        fusion_method=RRFusion(k=60.0),
-        top_k_per_retriever=5
-    )
-    
-    # 执行检索
-    results = multi_retriever.invoke("test query", top_k=4)
-    
-    # 打印结果
-    print(results)
-    # for i, result in enumerate(results):
-    #     score = result.metadata.get('score', 0.0)
-    #     print(f"Rank {i+1}: {result.content} (Score: {score:.8f})")
