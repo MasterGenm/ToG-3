@@ -39,7 +39,7 @@ python parser.py  pdf_path.pdf (or pdfs_dir)
 
 If you want to parse document with transformers，add `--use_hf=True`
 
-## 4. figure understand
+## 4. Figure understand
 
 Use vl model to understand content in parsed picture. Please obtain pdf layout parsed result first.
 ```
