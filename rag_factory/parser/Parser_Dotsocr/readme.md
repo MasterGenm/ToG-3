@@ -31,7 +31,7 @@ Using vLLM for faster speed  ( based on vllm==0.9.1 )
 python vllm_launch.py --model_path weights/DotsOCR
 ```
 
-## 3. Document Parse
+## 3. Document parse
 
 ```
 python parser.py  pdf_path.pdf (or pdfs_dir)
