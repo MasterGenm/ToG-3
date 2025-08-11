@@ -20,21 +20,28 @@ snapshot_download(repo_id="rednote-hilab/dots.ocr", local_dir="Parser_Dotsocr/we
 or
 
 from modelscope import snapshot_download
-snapshot_download(repo_id="rednote-hilab/dots.ocr", local_dir="Parser_Dotsocr/weights/DotsOCR")
+snapshot_download(repo_id="rednote-hilab/dots.ocr", local_dir=model_dir)
 ```
 
 ## 2. vLLM inference
 
-Using vLLM for faster paser speed  ( based on vllm==0.9.1 )
+Using vLLM for faster speed  ( based on vllm==0.9.1 )
 
 ```
-python vllm_launch.py --model_path dots_model_path
+python vllm_launch.py --model_path weights/DotsOCR
 ```
 
-## 3. Document Parse
+## 3. Document parse
 
 ```
-python parser.py pdf_path.pdf 
+python parser.py  pdf_path.pdf (or pdfs_dir)
 ```
 
 If you want to parse document with transformers，add `--use_hf=True`
+
+## 4. Figure understand
+
+Use vl model to understand content in parsed picture. Please obtain pdf layout parsed result first.
+```
+python fig_recognize.py --output output
+```

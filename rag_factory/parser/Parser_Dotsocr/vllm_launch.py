@@ -4,7 +4,7 @@ import sys
 from pathlib import Path
 import argparse
 
-def launch_vllm_server(hf_model_path="/home/yangcehao/doc_analysis/dots.ocr/weights/DotsOCR", num_gpus="0", gpu_memory_utilization=0.95, port=8001):
+def launch_vllm_server(hf_model_path="weights/DotsOCR", num_gpus="0", gpu_memory_utilization=0.95, port=8001):
     # 1. 检查模型路径
     model_path = Path(hf_model_path).resolve()
     if not model_path.exists():
