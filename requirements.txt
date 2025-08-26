@@ -19,7 +19,7 @@ rank_bm25
 faiss_gpu
 
 
-# for ocr
+# for parser
 PyMuPDF
 qwen_vl_utils
 transformers==4.51.3
@@ -33,3 +33,10 @@ torch==2.7.0 torchvision==0.22.0 torchaudio==2.7.0 --index-url https://download.
 vllm==0.9.1
 
 mineru[core]
+
+python-pptx
+python-docx
+openpyxl 
+chardet 
+readability-lxml 
+markdownify
