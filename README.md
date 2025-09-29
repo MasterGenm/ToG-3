@@ -8,13 +8,13 @@
 </div>
 
 <div align="center" style="line-height: 1;">
-  <a href="https://arxiv.org/abs/2411.06272" target="_blank" style="margin: 2px;">
-    <img alt="arXiv" src="https://img.shields.io/badge/Arxiv-2411.06272-b31b1b.svg?logo=arXiv" style="display: inline-block; vertical-align: middle;"/>
+  <a href="https://arxiv.org/abs/2509.21710" target="_blank" style="margin: 2px;">
+    <img alt="arXiv" src="https://img.shields.io/badge/Arxiv-2509.21710-b31b1b.svg?logo=arXiv" style="display: inline-block; vertical-align: middle;"/>
   </a>
-  <a href="https://github.com/DataArcTech/Golden-Touchstone" target="_blank" style="margin: 2px;">
+  <a href="https://github.com/DataArcTech/RAG-Factory" target="_blank" style="margin: 2px;">
     <img alt="github" src="https://img.shields.io/github/stars/DataArcTech/RAG-Factory.svg?style=social" style="display: inline-block; vertical-align: middle;"/>
   </a>
-  <a href="https://huggingface.co/IDEA-FinAI/TouchstoneGPT-7B-Instruct" target="_blank" style="margin: 2px;">
+  <a href="https://huggingface.co/datasets/IDEA-FinAI/Golden-Touchstone" target="_blank" style="margin: 2px;">
     <img alt="datasets" src="https://img.shields.io/badge/🤗-Datasets-yellow.svg" style="display: inline-block; vertical-align: middle;"/>
   </a>
   <a href="https://huggingface.co/IDEA-FinAI/TouchstoneGPT-7B-Instruct" target="_blank" style="margin: 2px;">
@@ -82,6 +82,20 @@ This project draws inspiration from and gratefully acknowledges the contribution
 - [Qdrant](https://github.com/qdrant/qdrant)
 - [Neo4j](https://github.com/neo4j/neo4j)
 
+  ## 📖 Citation
+
+```python
+@misc{wu2025ToG-3,
+      title={Think-on-Graph 3.0: Efficient and Adaptive LLM Reasoning on Heterogeneous Graphs via Multi-Agent Dual-Evolving Context Retrieval}, 
+      author={Xiaojun Wu, Cehao Yang, Xueyuan Lin, Chengjin Xu, Xuhui Jiang, Yuanliang Sun, Hui Xiong, Jia Li, Jian Guo},
+      year={2025},
+      eprint={2509.21710},
+      archivePrefix={arXiv},
+      primaryClass={cs.CL},
+      url={https://arxiv.org/abs/2509.21710}, 
+}
+
+
 
 ## ⭐ Star History
 
@@ -108,19 +122,7 @@ This project draws inspiration from and gratefully acknowledges the contribution
   </a>
 </div> -->
 
-<!-- ## 📖 Citation
 
-```python
-@misc{wu2024goldentouchstonecomprehensivebilingual,
-      title={Golden Touchstone: A Comprehensive Bilingual Benchmark for Evaluating Financial Large Language Models}, 
-      author={Xiaojun Wu and Junxi Liu and Huanyi Su and Zhouchi Lin and Yiyan Qi and Chengjin Xu and Jiajun Su and Jiajie Zhong and Fuwei Wang and Saizhuo Wang and Fengrui Hua and Jia Li and Jian Guo},
-      year={2024},
-      eprint={2411.06272},
-      archivePrefix={arXiv},
-      primaryClass={cs.CL},
-      url={https://arxiv.org/abs/2411.06272}, 
-}
-``` -->
 
 
 
